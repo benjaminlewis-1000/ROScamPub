@@ -14,10 +14,10 @@ int main(int argc, char** argv)
   image_transport::Publisher pub = it.advertise("recorded", 1);
   
   std::string vidSource;
-  if (nh.getParam("Vid", vidSource)){
+  if (nh.getParam("videoFile", vidSource)){
   	ROS_INFO("Got param: %s", vidSource.c_str());
   }else{
-  	ROS_ERROR("Failed to get param 'vid'");
+  	ROS_ERROR("Failed to get param 'videoFile'");
   }
 
   // Convert the passed as command line parameter index for the video device to an integer
@@ -32,7 +32,7 @@ int main(int argc, char** argv)
   cv::Mat frame;
   sensor_msgs::ImagePtr msg;
 
-  ros::Rate loop_rate(120); // Publish 30 fps
+  ros::Rate loop_rate(20); // Publish 30 fps
   while (nh.ok()) {
     cap >> frame;
     // Check if grabbed frame is actually full with some content
