@@ -49,7 +49,7 @@ int main(int argc, char **argv)
   
   	std::string topic; 
 	if (n.getParam("/videoFeed", topic)){
-		ROS_INFO("Got param: %s", topic.c_str());
+		ROS_ERROR("Got param: %s", topic.c_str());
 	}else{
 		ROS_ERROR("Failed to get param 'videoFeed'");
 	}
@@ -61,4 +61,8 @@ int main(int argc, char **argv)
 	}
  	ros::Subscriber imSub = n.subscribe(topic, 1000, test);
 
-  ros::spin(); return 0; } 
+  ros::spin();
+
+  return 0;
+}
+
